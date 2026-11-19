@@ -1,0 +1,1966 @@
+HTML
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InterЛюкс — Эксклюзивная мебель для дома</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #f4f3ef;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --primary-color: #a67c52;
+      --text-main: #4a4a4a;
+      --accent-promo: #d9534f;
+      --vine-color: #c59b6c;
+      --vine-glow: #e6ca9c;
+    }
+
+    [data-theme="default"] { --primary-color: #a67c52; --vine-color: #c59b6c; --vine-glow: #e6ca9c; }
+    [data-theme="spring"]  { --primary-color: #6b8e23; --vine-color: #8dae43; --vine-glow: #c8e088; }
+    [data-theme="summer"]  { --primary-color: #d97724; --vine-color: #e5934c; --vine-glow: #fcd299; }
+    [data-theme="autumn"]  { --primary-color: #a67c52; --vine-color: #c59b6c; --vine-glow: #e6ca9c; }
+    [data-theme="winter"]  { --primary-color: #4a7c59; --vine-color: #6b9e7a; --vine-glow: #b2d8be; }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      transition: background-color 0.4s ease;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* === СИММЕТРИЧНЫЕ БОКОВЫЕ ДЕРЕВЬЯ И ЛИАНЫ === */
+    .side-branch-container {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 420px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .side-branch-left { left: 15px; }
+    .side-branch-right { right: 15px; }
+
+    .branch-swaying-group {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: top center;
+      animation: branchSway 6s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes branchSway {
+      0% { transform: rotate(-1deg); }
+      100% { transform: rotate(1deg); }
+    }
+
+    .hanging-shop-sign {
+      position: absolute;
+      top: 130px;
+      left: 25px;
+      width: 370px;
+      background: rgba(253, 251, 247, 0.98);
+      border: 5px solid var(--primary-color);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.22);
+      pointer-events: auto;
+      transform-origin: top center;
+      animation: shopSignSwing 4s ease-in-out infinite alternate;
+      backdrop-filter: blur(6px);
+      z-index: 5;
+    }
+
+    @keyframes shopSignSwing {
+      0% { transform: rotate(1deg); }
+      100% { transform: rotate(-1deg); }
+    }
+
+    .hanging-shop-sign img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      border-top: 2px dashed #eaeaea;
+      padding-top: 10px;
+    }
+
+    .sidebar-link-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sidebar-link-item:hover {
+      background: #f8f5f0;
+      color: var(--primary-color);
+    }
+
+    .hanging-video-sign {
+      position: absolute;
+      top: 130px;
+      right: 25px;
+      width: 370px;
+      background: rgba(253, 251, 247, 0.98);
+      border: 5px solid var(--primary-color);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.22);
+      pointer-events: auto;
+      transform-origin: top center;
+      animation: shopSignSwing 4s ease-in-out infinite alternate;
+      backdrop-filter: blur(6px);
+      z-index: 5;
+    }
+
+    .hanging-video-sign video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* === НАВИГАЦИЯ === */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav-left-group {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-logo {
+      font-family: 'Great Vibes', cursive;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 2.6rem;
+      line-height: 1;
+    }
+
+    .nav-menu-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .dropdown {
+      position: relative;
+      cursor: pointer;
+      padding: 10px 0;
+    }
+
+    .dropdown-toggle {
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .dropdown:hover .dropdown-toggle,
+    .nav-link-item:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-link-item {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      border-radius: 8px;
+      padding: 10px 0;
+      min-width: 260px;
+      z-index: 200;
+      border: 1px solid #eaeaea;
+    }
+
+    .dropdown:hover .dropdown-menu { display: block; }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 20px;
+      color: #555;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f8f5f0;
+      color: var(--primary-color);
+    }
+
+    .nav-right-area {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-phone {
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .shop-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .action-icon-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 5px;
+      color: var(--text-main);
+      transition: color 0.3s;
+    }
+
+    .action-icon-btn:hover { color: var(--primary-color); }
+
+    .badge-count {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent-promo);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Шапка сайта */
+    .hero {
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo-img {
+      height: 130px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 10px;
+      animation: pulseLogo 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseLogo {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.03); }
+    }
+
+    .hero-title {
+      font-family: 'Great Vibes', cursive;
+      color: var(--primary-color);
+      font-size: 5.5rem;
+      margin: 0 0 5px;
+      line-height: 1.1;
+      font-weight: normal;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 25px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .features-bar {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    .feature-item::before {
+      content: "✓";
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    /* Портфолио / Сетка */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      max-width: 1350px;
+      margin: 0 auto 60px;
+      padding: 0 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(6px);
+      position: relative;
+    }
+
+    .project-card:hover { 
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .project-img-wrapper {
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      background-color: #eee;
+      position: relative;
+    }
+
+    .project-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-img-wrapper img { transform: scale(1.04); }
+
+    .card-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+      transition: background 0.2s ease;
+    }
+
+    .card-arrow:hover { background: var(--primary-color); }
+    .card-arrow.prev { left: 10px; }
+    .card-arrow.next { right: 10px; }
+
+    /* Кнопки быстрого добавления в Избранное и Корзину */
+    .card-actions-overlay {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .card-action-circle-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .card-action-circle-btn:hover {
+      transform: scale(1.1);
+      background: #ffffff;
+    }
+
+    .card-action-circle-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .project-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem;
+      color: var(--primary-color);
+      margin: 0 0 5px;
+      font-weight: normal;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0 0 15px;
+    }
+
+    .project-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-top: auto;
+      padding-top: 5px;
+    }
+
+    /* === РАЗДЕЛ ОТЗЫВОВ === */
+    .reviews-section {
+      max-width: 1350px;
+      margin: 0 auto 60px;
+      padding: 0 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+
+    .add-review-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .add-review-btn:hover { opacity: 0.9; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-author {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary-color);
+    }
+
+    .review-stars {
+      color: #f39c12;
+      font-size: 1rem;
+    }
+
+    .review-text {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Модальные окна */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 85%;
+      max-height: 90vh;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-caption {
+      text-align: center;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    .lightbox-caption h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--primary-color);
+      margin: 0 0 5px;
+      font-weight: normal;
+    }
+
+    .lightbox-caption p {
+      font-size: 0.95rem;
+      color: #555;
+      margin: 0;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 10px; right: 20px;
+      color: #333;
+      font-size: 35px;
+      cursor: pointer;
+      z-index: 2200;
+    }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      border: none;
+      font-size: 28px;
+      padding: 15px 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 2100;
+    }
+
+    .lightbox-arrow:hover { background: var(--primary-color); }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    .custom-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .custom-modal-box {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      width: 420px;
+      max-width: 90%;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .custom-modal-box h3 {
+      margin-top: 0;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+    }
+
+    .custom-modal-box input,
+    .custom-modal-box textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    .custom-modal-box button.submit-btn {
+      width: 100%;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .custom-modal-box button.submit-btn:hover { opacity: 0.9; }
+
+    .modal-close-x {
+      position: absolute;
+      top: 15px; right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .modal-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.9rem;
+    }
+
+    .modal-item-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-item-thumb {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .remove-item-btn {
+      background: none;
+      border: none;
+      color: #d9534f;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .remove-item-btn:hover { text-decoration: underline; }
+
+    .cart-total-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0 5px;
+      margin-top: 10px;
+      border-top: 2px solid #eaeaea;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .cart-total-amount {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+    }
+
+    /* === ВИДЖЕТ ИИ-ДИЗАЙНЕРА В ПРАВОМ НИЖНЕМ УГЛУ === */
+    .ai-chat-launcher {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      z-index: 2500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+    }
+
+    .ai-chat-launcher:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .ai-chat-window {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      width: 390px;
+      max-width: calc(100vw - 40px);
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+      z-index: 2500;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid var(--primary-color);
+    }
+
+    .ai-chat-header {
+      background: var(--primary-color);
+      color: white;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .ai-chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .ai-chat-messages {
+      padding: 15px;
+      height: 360px;
+      overflow-y: auto;
+      background: #f9f8f6;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .ai-msg {
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 92%;
+      line-height: 1.5;
+    }
+
+    .ai-msg.bot {
+      background: #ffffff;
+      color: #333;
+      align-self: flex-start;
+      border: 1px solid #e5e0d8;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .ai-msg.user {
+      background: var(--primary-color);
+      color: white;
+      align-self: flex-end;
+    }
+
+    .blueprint-box {
+      background: #1b2838;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 8px;
+      text-align: center;
+      border: 1px solid #4a6b8c;
+    }
+
+    .ai-controls-panel {
+      padding: 12px;
+      background: #ffffff;
+      border-top: 1px solid #eaeaea;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ai-controls-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .ai-controls-panel select,
+    .ai-controls-panel input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-family: inherit;
+    }
+
+    .ai-generate-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .ai-generate-btn:hover { opacity: 0.9; }
+
+    footer {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #eaeaea;
+      font-size: 0.9rem;
+      color: #666;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(6px);
+    }
+
+    footer p { margin: 5px 0; }
+
+    @media (max-width: 1750px) { 
+      .side-branch-container { display: none; }
+    }
+    @media (max-width: 1100px) { 
+      .portfolio-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); } 
+    }
+    @media (max-width: 600px) {
+      .portfolio-grid, .reviews-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 4rem; }
+      .nav-menu-links { display: none; }
+    }
+  </style>
+</head>
+<body data-theme="default">
+
+  <!-- ЛЕВОЕ ДЕРЕВО, БРЕНДБУК И РАЗДЕЛЫ ПОД НИМ -->
+  <div class="side-branch-container side-branch-left">
+    <div class="branch-swaying-group">
+      <svg viewBox="0 0 200 1000" preserveAspectRatio="none" width="100%" height="100%">
+        <path d="M 200 0 C 150 200, 0 350, 40 550 C 70 700, 20 850, 180 1000 L 200 1000 Z" fill="var(--vine-color)" opacity="0.85" />
+        <path d="M 180 50 C 100 250, 20 400, 60 600 C 90 750, 40 900, 160 1000 Z" fill="var(--vine-glow)" opacity="0.6" />
+        <circle cx="100" cy="120" r="60" fill="var(--vine-color)" opacity="0.9" />
+        <circle cx="50" cy="260" r="65" fill="var(--vine-color)" opacity="0.85" />
+        <line x1="80" y1="120" x2="80" y2="155" stroke="#654321" stroke-width="3" />
+        <line x1="170" y1="120" x2="170" y2="155" stroke="#654321" stroke-width="3" />
+      </svg>
+    </div>
+    <div class="hanging-shop-sign">
+      <img src="brandbook.jpg" alt="Брендбук InterЛюкс" onclick="openFullImage('brandbook.jpg', 'Брендбук InterЛюкс')">
+      
+      <div class="sidebar-menu-links">
+        <a href="#" class="sidebar-link-item" onclick="openBedsCatalogModal(event)">🛏️ Кровати</a>
+        <a href="#" class="sidebar-link-item" onclick="openMattressesCatalogModal(event)">🛏️ Матрасы</a>
+        <a href="#" class="sidebar-link-item" onclick="openPromoModal(0)" style="color: var(--accent-promo); font-weight: 700;">🔥 Акции и скидки</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРАВОЕ ДЕРЕВО И ВИДЕО -->
+  <div class="side-branch-container side-branch-right">
+    <div class="branch-swaying-group" style="animation-delay: -3s;">
+      <svg viewBox="0 0 200 1000" preserveAspectRatio="none" width="100%" height="100%">
+        <path d="M 200 0 C 150 200, 0 350, 40 550 C 70 700, 20 850, 180 1000 L 200 1000 Z" fill="var(--vine-color)" opacity="0.85" />
+        <path d="M 180 50 C 100 250, 20 400, 60 600 C 90 750, 40 900, 160 1000 Z" fill="var(--vine-glow)" opacity="0.6" />
+        <circle cx="100" cy="120" r="60" fill="var(--vine-color)" opacity="0.9" />
+        <circle cx="50" cy="260" r="65" fill="var(--vine-color)" opacity="0.85" />
+      </svg>
+    </div>
+    <div class="hanging-video-sign">
+      <video autoplay muted loop playsinline>
+        <source src="bg-video2.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <!-- НАВИГАЦИЯ -->
+  <nav class="navbar">
+    <div class="nav-left-group">
+      <a href="#" class="nav-logo">InterЛюкс</a>
+    </div>
+
+    <div class="nav-menu-links">
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Покупателям ▾</a>
+        <div class="dropdown-menu">
+          <a href="#" onclick="showInfo('Возврат и замена товаров', 'Возврат или обмен мебели в течение 14 дней.')">Возврат и замена товаров</a>
+          <a href="#" onclick="showInfo('Образцы документов', 'Договор купли-продажи, гарантийный талон.')">Образцы документов</a>
+          <a href="#" onclick="showInfo('Гарантийные обязательства', 'Официальная гарантия сроком до 3 лет.')">Гарантийные обязательства</a>
+          <a href="#" onclick="showInfo('Сведения о сервисных центрах', 'Сервисные центры во всех крупных городах.')">Сведения о сервисных центрах</a>
+          <a href="#" onclick="showInfo('Доставка и сборка', 'Профессиональная сборка и подъем.')">Доставка и сборка</a>
+          <a href="#" onclick="showInfo('Как оформить заказ?', 'Оставьте заявку на сайте или свяжитесь с нами.')">Как оформить заказ?</a>
+        </div>
+      </div>
+
+      <a href="#" class="nav-link-item" onclick="showInfo('Оплата и доставка', 'Наличный, безналичный расчет и рассрочка.')">Оплата и доставка</a>
+      <a href="#" class="nav-link-item" onclick="openOrderStatusModal()">Статус заказа</a>
+    </div>
+
+    <div class="nav-right-area">
+      <a href="tel:87470414971" class="nav-phone">📞 8 (747) 041-49-71</a>
+      
+      <div class="shop-actions">
+        <button class="action-icon-btn" title="Сравнение" onclick="showInfo('Сравнение товаров', 'Список выбранных для сравнения моделей пуст.')">
+          📊 <span class="badge-count" id="compare-badge">0</span>
+        </button>
+        <button class="action-icon-btn" title="Избранное" onclick="openFavoritesModal()">
+          🤍 <span class="badge-count" id="favorites-badge">0</span>
+        </button>
+        <button class="action-icon-btn" title="Корзина" onclick="openCartModal()">
+          🛒 <span class="badge-count" id="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <img id="hero-icon" src="основной.jpg" alt="Логотип InterЛюкс" class="hero-logo-img" onerror="this.src='основной.jpg'">
+    <h1 class="hero-title">InterЛюкс</h1>
+    <p class="hero-subtitle">Эксклюзивная мебель для дома</p>
+
+    <div class="features-bar">
+      <div class="feature-item">Премиум материалы</div>
+      <div class="feature-item">3D Визуализация</div>
+      <div class="feature-item">Экспресс доставка</div>
+      <div class="feature-item">Гарантия качества</div>
+      <div class="feature-item">Замер и доставка — БЕСПЛАТНО</div>
+    </div>
+  </header>
+
+  <!-- ГЛАВНАЯ СЕТКА ПРОЕКТОВ (Корпусная мебель) -->
+  <main class="portfolio-grid">
+    <!-- Проект 1 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-0" onclick="toggleItemFavorite(event, 'proj-0')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-0" onclick="toggleItemCart(event, 'proj-0')" title="В корзину">🛒</button>
+        </div>
+        <button class="card-arrow prev" onclick="nextCardSlide(event, 0, -1)">&#10094;</button>
+        <img id="card-img-0" src="изображение 1.jpeg" alt="Проект 1" onclick="openLightbox(0, 0)">
+        <button class="card-arrow next" onclick="nextCardSlide(event, 0, 1)">&#10095;</button>
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 1</h2>
+        <p class="project-desc">Современный кухонный гарнитур из прочного МДФ и ЛДСП со встроенной техникой, надежной кромкой ПВХ и функциональным хранением.</p>
+        <div class="project-price">от 480 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 2 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-1" onclick="toggleItemFavorite(event, 'proj-1')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-1" onclick="toggleItemCart(event, 'proj-1')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-1" src="IMG_20260909_194138.jpg" alt="Проект 2" onclick="openLightbox(1, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 2</h2>
+        <p class="project-desc">Стильная ТВ-зона и стенка для гостиной с вертикальным реечным стеновым оформлением, мебельным щитом и подсветкой.</p>
+        <div class="project-price">от 320 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 3 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-2" onclick="toggleItemFavorite(event, 'proj-2')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-2" onclick="toggleItemCart(event, 'proj-2')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-2" src="IMG_20260909_194122.jpg" alt="Проект 3" onclick="openLightbox(2, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 3</h2>
+        <p class="project-desc">Интерьер гостиной зоны с оригинальной акцентной стеной и долговечной конструкцией из сертифицированных материалов.</p>
+        <div class="project-price">от 350 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 4 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-3" onclick="toggleItemFavorite(event, 'proj-3')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-3" onclick="toggleItemCart(event, 'proj-3')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-3" src="IMG_20260909_194153.jpg" alt="Проект 4" onclick="openLightbox(3, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 4</h2>
+        <p class="project-desc">Просторный вместительный шкаф-купе во всю высоту с надежным профилем, прочной фанерой и задней стенкой из ХДФ.</p>
+        <div class="project-price">от 310 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 5 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-4" onclick="toggleItemFavorite(event, 'proj-4')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-4" onclick="toggleItemCart(event, 'proj-4')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-4" src="IMG_20260909_194233.jpg" alt="Проект 5" onclick="openLightbox(4, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 5</h2>
+        <p class="project-desc">Спальный гарнитур по индивидуальным размерам с мебельным щитом и мягким рассеянным светом на долгие годы.</p>
+        <div class="project-price">от 420 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 6 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-5" onclick="toggleItemFavorite(event, 'proj-5')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-5" onclick="toggleItemCart(event, 'proj-5')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-5" src="IMG_20260909_194252.jpg" alt="Проект 6" onclick="openLightbox(5, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 6</h2>
+        <p class="project-desc">Функциональная прихожая зона со скрытыми системами хранения, износостойким ЛДСП и мягким сиденьем.</p>
+        <div class="project-price">от 300 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 7 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-6" onclick="toggleItemFavorite(event, 'proj-6')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-6" onclick="toggleItemCart(event, 'proj-6')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-6" src="IMG_20260909_194309.jpg" alt="Проект 7" onclick="openLightbox(6, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 7</h2>
+        <p class="project-desc">Организация домашнего рабочего кабинета с кабель-каналами, надежной сборкой и защитной кромкой.</p>
+        <div class="project-price">от 315 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 8 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-7" onclick="toggleItemFavorite(event, 'proj-7')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-7" onclick="toggleItemCart(event, 'proj-7')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-7" src="IMG_20260909_194331.jpg" alt="Проект 8" onclick="openLightbox(7, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 8</h2>
+        <p class="project-desc">Коммерческая корпусная мебель и витринные модули с закаленным стеклом и повышенной прочностью каркаса.</p>
+        <div class="project-price">от 380 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 9 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-8" onclick="toggleItemFavorite(event, 'proj-8')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-8" onclick="toggleItemCart(event, 'proj-8')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-8" src="IMG_20260909_194355.jpg" alt="Проект 9" onclick="openLightbox(8, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 9</h2>
+        <p class="project-desc">Подвесная мебель для ванной комнаты из влагостойких материалов МДФ и защищенных от влаги элементов.</p>
+        <div class="project-price">от 300 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 10 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-9" onclick="toggleItemFavorite(event, 'proj-9')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-9" onclick="toggleItemCart(event, 'proj-9')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-9" src="IMG_20260909_194415.jpg" alt="Проект 10" onclick="openLightbox(9, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 10</h2>
+        <p class="project-desc">Современная гардеробная комната с прочными полками, брючницами и органайзерами для одежды.</p>
+        <div class="project-price">от 360 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 11 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-10" onclick="toggleItemFavorite(event, 'proj-10')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-10" onclick="toggleItemCart(event, 'proj-10')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-10" src="IMG_20260909_194436.jpg" alt="Проект 11" onclick="openLightbox(10, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 11</h2>
+        <p class="project-desc">Элегантный сервант-витрина для столовой зоны с тонированным стеклом и надежной качественной фурнитурой.</p>
+        <div class="project-price">от 330 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 12 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-11" onclick="toggleItemFavorite(event, 'proj-11')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-11" onclick="toggleItemCart(event, 'proj-11')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-11" src="IMG_20260909_194501.jpg" alt="Проект 12" onclick="openLightbox(11, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 12</h2>
+        <p class="project-desc">Детская модульная мебель с травмобезопасными скругленными углами и экологичным безопасным покрытием.</p>
+        <div class="project-price">от 340 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 13 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-12" onclick="toggleItemFavorite(event, 'proj-12')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-12" onclick="toggleItemCart(event, 'proj-12')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-12" src="IMG_20260909_194524.jpg" alt="Проект 13" onclick="openLightbox(12, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 13</h2>
+        <p class="project-desc">Кухонный остров с обеденной зоной из искусственного камня и усиленным каркасом из ЛДСП и фанеры.</p>
+        <div class="project-price">от 550 000 ₸</div>
+      </div>
+    </article>
+
+    <!-- Проект 14 -->
+    <article class="project-card">
+      <div class="project-img-wrapper">
+        <div class="card-actions-overlay">
+          <button class="card-action-circle-btn" id="fav-btn-13" onclick="toggleItemFavorite(event, 'proj-13')" title="В избранное">🤍</button>
+          <button class="card-action-circle-btn" id="cart-btn-13" onclick="toggleItemCart(event, 'proj-13')" title="В корзину">🛒</button>
+        </div>
+        <img id="card-img-13" src="Файл JPG.jpg" alt="Проект 14" onclick="openLightbox(13, 0)">
+      </div>
+      <div class="project-info">
+        <h2 class="project-title">Проект 14</h2>
+        <p class="project-desc">Эксклюзивный мебельный гарнитур с реечной панелью и подвесными модулями хранения в едином премиальном стиле.</p>
+        <div class="project-price">от 390 000 ₸</div>
+      </div>
+    </article>
+  </main>
+
+  <!-- === РАЗДЕЛ ОТЗЫВОВ === -->
+  <section class="reviews-section">
+    <div class="reviews-header">
+      <h2 class="section-title">Отзывы клиентов</h2>
+      <button class="add-review-btn" onclick="openAddReviewModal()">Оставить отзыв</button>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-author">Айгуль С.</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Заказывали кухню и шкаф-купе. Сделали всё в срок, качество материалов на высоте! Отдельное спасибо за бесплатный замер.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-author">Тимур К.</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Брал ортопедический матрас и кровать. Сон стал совсем другим! Очень вежливые менеджеры и быстрая доставка.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-author">Марина Е.</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Воспользовались акцией 1+1, получили комод в подарок к спальному гарнитуру. Очень довольны сервисом InterЛюкс!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Лайтбокс для проектов -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-arrow lightbox-prev" onclick="changeGlobalSlide(-1)">&#10094;</button>
+    <div class="lightbox-content">
+      <span class="lightbox-close" onclick="closeLightboxDirect()">&times;</span>
+      <img id="lightbox-img" src="" alt="Фото">
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+    <button class="lightbox-arrow lightbox-next" onclick="changeGlobalSlide(1)">&#10095;</button>
+  </div>
+
+  <!-- Лайтбокс для акций -->
+  <div id="promoLightbox" class="lightbox" onclick="closePromoLightbox(event)">
+    <button class="lightbox-arrow lightbox-prev" onclick="changePromoSlide(-1)">&#10094;</button>
+    <div class="lightbox-content">
+      <span class="lightbox-close" onclick="closePromoLightboxDirect()">&times;</span>
+      <img id="promoLightbox-img" src="" alt="Акция">
+      <div class="lightbox-caption">
+        <h3 id="promoLightbox-title" style="color: var(--primary-color);"></h3>
+        <p id="promoLightbox-desc" style="color: #333;"></p>
+      </div>
+    </div>
+    <button class="lightbox-arrow lightbox-next" onclick="changePromoSlide(1)">&#10095;</button>
+  </div>
+
+  <!-- Модальное окно: Каталог кроватей -->
+  <div id="bedsCatalogModal" class="custom-modal" onclick="closeModalOutside(event, 'bedsCatalogModal')">
+    <div class="custom-modal-box" style="width: 900px; max-width: 95%; max-height: 90vh; overflow-y: auto;">
+      <span class="modal-close-x" onclick="closeModal('bedsCatalogModal')">&times;</span>
+      <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; margin-bottom: 15px;">Каталог кроватей</h3>
+      <div id="beds-catalog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;"></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: Каталог матрасов -->
+  <div id="mattressesCatalogModal" class="custom-modal" onclick="closeModalOutside(event, 'mattressesCatalogModal')">
+    <div class="custom-modal-box" style="width: 900px; max-width: 95%; max-height: 90vh; overflow-y: auto;">
+      <span class="modal-close-x" onclick="closeModal('mattressesCatalogModal')">&times;</span>
+      <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; margin-bottom: 15px;">Каталог матрасов</h3>
+      <div id="mattresses-catalog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;"></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: Избранное -->
+  <div id="favoritesModal" class="custom-modal" onclick="closeModalOutside(event, 'favoritesModal')">
+    <div class="custom-modal-box" style="width: 500px;">
+      <span class="modal-close-x" onclick="closeModal('favoritesModal')">&times;</span>
+      <h3>Ваше избранное</h3>
+      <div id="favorites-list" style="max-height: 350px; overflow-y: auto; margin-top: 15px;"></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: Корзина -->
+  <div id="cartModal" class="custom-modal" onclick="closeModalOutside(event, 'cartModal')">
+    <div class="custom-modal-box" style="width: 520px;">
+      <span class="modal-close-x" onclick="closeModal('cartModal')">&times;</span>
+      <h3>Корзина покупок</h3>
+      <div id="cart-list" style="max-height: 350px; overflow-y: auto; margin-top: 15px;"></div>
+      <div id="cart-total-container" class="cart-total-box" style="display: none;">
+        <span>Итого к оплате:</span>
+        <span class="cart-total-amount" id="cart-total-price">0 ₸</span>
+      </div>
+      <button class="submit-btn" id="checkout-btn" style="margin-top: 15px; display: none;" onclick="checkoutOrder()">Оформить заказ</button>
+    </div>
+  </div>
+
+  <!-- Статус заказа -->
+  <div id="orderStatusModal" class="custom-modal" onclick="closeModalOutside(event, 'orderStatusModal')">
+    <div class="custom-modal-box">
+      <span class="modal-close-x" onclick="closeModal('orderStatusModal')">&times;</span>
+      <h3>Статус заказа</h3>
+      <p style="font-size: 0.9rem; color: #666;">Введите номер заказа:</p>
+      <input type="text" id="orderInput" placeholder="Пример: 11111 или XXXX-111111">
+      <button class="submit-btn" onclick="checkOrderStatus()">Узнать статус</button>
+    </div>
+  </div>
+
+  <!-- Инфо модалка -->
+  <div id="infoModal" class="custom-modal" onclick="closeModalOutside(event, 'infoModal')">
+    <div class="custom-modal-box">
+      <span class="modal-close-x" onclick="closeModal('infoModal')">&times;</span>
+      <h3 id="infoTitle">Информация</h3>
+      <p id="infoText" style="font-size: 0.95rem; color: #444; line-height: 1.6;"></p>
+      <button class="submit-btn" onclick="closeModal('infoModal')" style="margin-top: 15px;">Понятно</button>
+    </div>
+  </div>
+
+  <!-- Модальное окно добавления отзыва -->
+  <div id="reviewModal" class="custom-modal" onclick="closeModalOutside(event, 'reviewModal')">
+    <div class="custom-modal-box">
+      <span class="modal-close-x" onclick="closeModal('reviewModal')">&times;</span>
+      <h3>Оставить отзыв</h3>
+      <input type="text" id="reviewAuthor" placeholder="Ваше имя">
+      <textarea id="reviewText" rows="4" placeholder="Ваш отзыв..."></textarea>
+      <button class="submit-btn" onclick="submitReview()">Отправить</button>
+    </div>
+  </div>
+
+  <!-- Кнопка вызова ИИ-Дизайнера в правом нижнем углу -->
+  <button class="ai-chat-launcher" onclick="toggleAiChat()">
+    <span>🤖</span>
+    <span>ИИ-Дизайнер: 3D-чертёж</span>
+  </button>
+
+  <!-- Окно чата с генератором 3D-чертежа -->
+  <div id="aiChatWindow" class="ai-chat-window">
+    <div class="ai-chat-header">
+      <span>🤖 InterЛюкс AI — Генератор макета</span>
+      <button class="ai-chat-close" onclick="toggleAiChat()">&times;</button>
+    </div>
+
+    <div id="aiChatMessages" class="ai-chat-messages">
+      <div class="ai-msg bot">
+        Здравствуйте! Я ИИ-проектировщик <strong>InterЛюкс</strong>. Укажите параметры мебели ниже — я построю примерный 3D-чертёж по вашим размерам и рассчитаю стоимость в тенге.
+      </div>
+    </div>
+
+    <div class="ai-controls-panel">
+      <div class="ai-controls-row">
+        <select id="aiFurnitureType">
+          <option value="kitchen">Кухонный гарнитур</option>
+          <option value="wardrobe">Шкаф-купе</option>
+          <option value="tvzone">ТВ-зона / Стенка</option>
+          <option value="bed">Кровать на заказ</option>
+        </select>
+        <select id="aiMaterialType">
+          <option value="ЛДСП + кромка ПВХ" data-mult="1">ЛДСП (Стандарт)</option>
+          <option value="МДФ + эмаль/плёнка" data-mult="1.25">МДФ (Премиум)</option>
+          <option value="Мебельный щит / Фанера" data-mult="1.5">Мебельный щит</option>
+        </select>
+      </div>
+
+      <div class="ai-controls-row">
+        <input type="number" id="aiWidthInput" value="240" min="60" max="600" placeholder="Ширина (см)">
+        <input type="number" id="aiHeightInput" value="210" min="50" max="320" placeholder="Высота (см)">
+      </div>
+
+      <button class="ai-generate-btn" onclick="generateAiBlueprint()">✨ Построить 3D-чертёж и цену</button>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>InterЛюкс</strong> — Эксклюзивная мебель для дома на заказ</p>
+    <p>Телефон: 8 (747) 041-49-71 | Email: interlux@gmail.com | Instagram: @_InterLux_ / _ikberlux</p>
+  </footer>
+
+  <script>
+    function formatPrice(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₸";
+    }
+
+    const projects = [
+      { title: "Проект 1", price: 480000, desc: "Современный кухонный гарнитур из прочного МДФ и ЛДСП со встроенной техникой, надежной кромкой ПВХ и функциональным хранением.", images: ["изображение 1.jpeg", "изображение 2.jpeg", "изобрпжение 3.jpeg"] },
+      { title: "Проект 2", price: 320000, desc: "Стильная ТВ-зона и стенка для гостиной с вертикальным реечным стеновым оформлением, мебельным щитом и подсветкой.", images: ["IMG_20260909_194138.jpg"] },
+      { title: "Проект 3", price: 350000, desc: "Интерьер гостиной зоны с оригинальной акцентной стеной и долговечной конструкцией из сертифицированных материалов.", images: ["IMG_20260909_194122.jpg"] },
+      { title: "Проект 4", price: 310000, desc: "Просторный вместительный шкаф-купе во всю высоту с надежным профилем, прочной фанерой и задней стенкой из ХДФ.", images: ["IMG_20260909_194153.jpg"] },
+      { title: "Проект 5", price: 420000, desc: "Спальный гарнитур по индивидуальным размерам с мебельным щитом и мягким рассеянным светом на долгие годы.", images: ["IMG_20260909_194233.jpg"] },
+      { title: "Проект 6", price: 300000, desc: "Функциональная прихожая зона со скрытыми системами хранения, износостойким ЛДСП и мягким сиденьем.", images: ["IMG_20260909_194252.jpg"] },
+      { title: "Проект 7", price: 315000, desc: "Организация домашнего рабочего кабинета с кабель-каналами, надежной сборкой и защитной кромкой.", images: ["IMG_20260909_194309.jpg"] },
+      { title: "Проект 8", price: 380000, desc: "Коммерческая корпусная мебель и витринные модули с закаленным стеклом и повышенной прочностью каркаса.", images: ["IMG_20260909_194331.jpg"] },
+      { title: "Проект 9", price: 300000, desc: "Подвесная мебель для ванной комнаты из влагостойких материалов МДФ и защищенных от влаги элементов.", images: ["IMG_20260909_194355.jpg"] },
+      { title: "Проект 10", price: 360000, desc: "Современная гардеробная комната с прочными полками, брючницами и органайзерами для одежды.", images: ["IMG_20260909_194415.jpg"] },
+      { title: "Проект 11", price: 330000, desc: "Элегантный сервант-витрина для столовой зоны с тонированным стеклом и надежной качественной фурнитурой.", images: ["IMG_20260909_194436.jpg"] },
+      { title: "Проект 12", price: 340000, desc: "Детская модульная мебель с травмобезопасными скругленными углами и экологичным безопасным покрытием.", images: ["IMG_20260909_194501.jpg"] },
+      { title: "Проект 13", price: 550000, desc: "Кухонный остров с обеденной зоной из искусственного камня и усиленным каркасом из ЛДСП и фанеры.", images: ["IMG_20260909_194524.jpg"] },
+      { title: "Проект 14", price: 390000, desc: "Эксклюзивный мебельный гарнитур с реечной панелью и подвесными модулями хранения в едином премиальном стиле.", images: ["Файл JPG.jpg"] }
+    ];
+
+    const bedsCatalog = [
+      { id: 'bed-0', title: "Кровать 1", price: 80000, desc: "Односпальная дизайнерская кровать со светлым деревянным каркасом и мягким изголовьем.", image: "кровать 1.webp" },
+      { id: 'bed-1', title: "Кровать 2", price: 95000, desc: "Комплект стильных односпальных кроватей в современном сером исполнении с геометрическим изголовьем.", image: "кровать 2.webp" },
+      { id: 'bed-2', title: "Кровать 3", price: 155000, desc: "Двуспальная премиальная кровать с мягкой каретной стяжкой и хромированными ножками.", image: "кровать 3.webp" },
+      { id: 'bed-3', title: "Кровать 4", price: 125000, desc: "Двуспальная кровать цвета текстурного дерева с белой контрастной вставкой в изголовье.", image: "кровать 4.webp" }
+    ];
+
+    const mattressesCatalog = [
+      { id: 'mat-0', title: "Матрас 1", price: 45000, desc: "Ортопедический матрас с независимым пружинным блоком и слоем натуральной кокосовой койры.", image: "матрас 1.webp" },
+      { id: 'mat-1', title: "Матрас 2", price: 30000, desc: "Анатомический матрас средней жесткости с рельефной стежкой для комфортного отдыха.", image: "матрас 2.jpg" },
+      { id: 'mat-2', title: "Матрас 3", price: 50000, desc: "Премиальный высокий двуспальный матрас с ромбовидной стежкой и усиленным периметром.", image: "матрас 3.jpg" },
+      { id: 'mat-3', title: "Матрас 4", price: 38000, desc: "Универсальный эластичный матрас с дышащим чехлом и поддержкой позвоночника.", image: "матрас 4.jpg" }
+    ];
+
+    const promoBanners = [
+      { src: "akciya-banner.jpg", title: "🔥 Скидки 20% + Подарок", desc: "Эксклюзивная мебель для дома: скидка 20% и прикроватная тумба в подарок!" },
+      { src: "akciya-banner2.jpeg", title: "🔥 Акция: Мебель на заказ", desc: "Кухни, спальни, прихожие, шкафы, ТВ-зоны, табуретки и тумбочки по вашим размерам!" },
+      { src: "akciya-banner3.jpeg", title: "🔥 Акция 1 + 1 = Подарок!", desc: "При заказе любого комплекта мебели — прикроватная тумба или комод в подарок!" }
+    ];
+    let currentPromoIndex = 0;
+
+    let globalGallery = [];
+    projects.forEach((proj, projIdx) => {
+      proj.images.forEach((imgSrc, imgIdx) => {
+        globalGallery.push({ projectIndex: projIdx, imageIndex: imgIdx, src: imgSrc, title: proj.title, desc: proj.desc });
+      });
+    });
+
+    let currentGlobalIndex = 0;
+    let cardCurrentIndices = new Array(projects.length).fill(0);
+
+    let favoritesList = [];
+    let cartList = [];
+    let customAiProjects = [];
+
+    function getItemById(itemId) {
+      if (itemId.startsWith('proj-')) {
+        const idx = parseInt(itemId.replace('proj-', ''), 10);
+        const p = projects[idx];
+        return { id: itemId, title: p.title, price: p.price, desc: p.desc, image: p.images[0] };
+      } else if (itemId.startsWith('bed-')) {
+        return bedsCatalog.find(b => b.id === itemId);
+      } else if (itemId.startsWith('mat-')) {
+        return mattressesCatalog.find(m => m.id === itemId);
+      } else if (itemId.startsWith('ai-')) {
+        return customAiProjects.find(a => a.id === itemId);
+      }
+      return null;
+    }
+
+    function applyAutoSeasonTheme() {
+      const month = new Date().getMonth() + 1;
+      let theme = 'default';
+      let logoName = 'основной.jpg';
+      if (month === 3) { theme = 'spring'; logoName = 'весенний.jpg'; }
+      else if (month === 6) { theme = 'summer'; logoName = 'летний.jpg'; }
+      else if (month === 9) { theme = 'autumn'; logoName = 'осенний.jpg'; }
+      else if (month === 12) { theme = 'winter'; logoName = 'зимний.jpg'; }
+      
+      document.body.setAttribute('data-theme', theme);
+      const logoEl = document.getElementById('hero-icon');
+      if (logoEl) logoEl.src = logoName;
+    }
+
+    applyAutoSeasonTheme();
+
+    function nextCardSlide(event, projectIndex, direction) {
+      event.stopPropagation();
+      const proj = projects[projectIndex];
+      cardCurrentIndices[projectIndex] += direction;
+      if (cardCurrentIndices[projectIndex] < 0) {
+        cardCurrentIndices[projectIndex] = proj.images.length - 1;
+      } else if (cardCurrentIndices[projectIndex] >= proj.images.length) {
+        cardCurrentIndices[projectIndex] = 0;
+      }
+      const imgElement = document.getElementById(`card-img-${projectIndex}`);
+      if (imgElement) {
+        imgElement.src = proj.images[cardCurrentIndices[projectIndex]];
+        imgElement.setAttribute('onclick', `openLightbox(${projectIndex}, ${cardCurrentIndices[projectIndex]})`);
+      }
+    }
+
+    function openLightbox(projectIndex, imageIndex) {
+      let targetIndex = 0;
+      for (let i = 0; i < globalGallery.length; i++) {
+        if (globalGallery[i].projectIndex === projectIndex && globalGallery[i].imageIndex === imageIndex) {
+          targetIndex = i;
+          break;
+        }
+      }
+      currentGlobalIndex = targetIndex;
+      updateLightboxContent();
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox(event) {
+      if (event.target.id === 'lightbox') closeLightboxDirect();
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    function changeGlobalSlide(direction) {
+      currentGlobalIndex += direction;
+      if (currentGlobalIndex < 0) currentGlobalIndex = globalGallery.length - 1;
+      else if (currentGlobalIndex >= globalGallery.length) currentGlobalIndex = 0;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const item = globalGallery[currentGlobalIndex];
+      document.getElementById('lightbox-img').src = item.src;
+      document.getElementById('lightbox-title').innerText = item.title;
+      document.getElementById('lightbox-desc').innerText = item.desc;
+    }
+
+    function openBedsCatalogModal(event) {
+      if (event) event.preventDefault();
+      renderBedsCatalog();
+      document.getElementById('bedsCatalogModal').style.display = 'flex';
+    }
+
+    function renderBedsCatalog() {
+      const grid = document.getElementById('beds-catalog-grid');
+      grid.innerHTML = '';
+      bedsCatalog.forEach(bed => {
+        const isFav = favoritesList.includes(bed.id);
+        const isCart = cartList.includes(bed.id);
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.style.border = '1px solid #eee';
+        card.innerHTML = `
+          <div class="project-img-wrapper" style="height: 240px;">
+            <div class="card-actions-overlay">
+              <button class="card-action-circle-btn ${isFav ? 'active' : ''}" onclick="toggleItemFavorite(event, '${bed.id}')" title="В избранное">${isFav ? '❤️' : '🤍'}</button>
+              <button class="card-action-circle-btn ${isCart ? 'active' : ''}" onclick="toggleItemCart(event, '${bed.id}')" title="В корзину">🛒</button>
+            </div>
+            <img src="${bed.image}" alt="${bed.title}">
+          </div>
+          <div class="project-info">
+            <h2 class="project-title" style="font-size: 2rem;">${bed.title}</h2>
+            <p class="project-desc">${bed.desc}</p>
+            <div class="project-price">${formatPrice(bed.price)}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openMattressesCatalogModal(event) {
+      if (event) event.preventDefault();
+      renderMattressesCatalog();
+      document.getElementById('mattressesCatalogModal').style.display = 'flex';
+    }
+
+    function renderMattressesCatalog() {
+      const grid = document.getElementById('mattresses-catalog-grid');
+      grid.innerHTML = '';
+      mattressesCatalog.forEach(mat => {
+        const isFav = favoritesList.includes(mat.id);
+        const isCart = cartList.includes(mat.id);
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.style.border = '1px solid #eee';
+        card.innerHTML = `
+          <div class="project-img-wrapper" style="height: 240px; background: #fff;">
+            <div class="card-actions-overlay">
+              <button class="card-action-circle-btn ${isFav ? 'active' : ''}" onclick="toggleItemFavorite(event, '${mat.id}')" title="В избранное">${isFav ? '❤️' : '🤍'}</button>
+              <button class="card-action-circle-btn ${isCart ? 'active' : ''}" onclick="toggleItemCart(event, '${mat.id}')" title="В корзину">🛒</button>
+            </div>
+            <img src="${mat.image}" alt="${mat.title}" style="object-fit: contain; padding: 10px;">
+          </div>
+          <div class="project-info">
+            <h2 class="project-title" style="font-size: 2rem;">${mat.title}</h2>
+            <p class="project-desc">${mat.desc}</p>
+            <div class="project-price">${formatPrice(mat.price)}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleItemFavorite(event, itemId) {
+      event.stopPropagation();
+      const idx = favoritesList.indexOf(itemId);
+      if (idx > -1) favoritesList.splice(idx, 1);
+      else favoritesList.push(itemId);
+      syncAllButtons();
+      updateBadges();
+    }
+
+    function toggleItemCart(event, itemId) {
+      event.stopPropagation();
+      const idx = cartList.indexOf(itemId);
+      if (idx > -1) cartList.splice(idx, 1);
+      else cartList.push(itemId);
+      syncAllButtons();
+      updateBadges();
+    }
+
+    function syncAllButtons() {
+      projects.forEach((_, idx) => {
+        const itemId = `proj-${idx}`;
+        const favBtn = document.getElementById(`fav-btn-${idx}`);
+        const cartBtn = document.getElementById(`cart-btn-${idx}`);
+        if (favBtn) {
+          const isFav = favoritesList.includes(itemId);
+          favBtn.classList.toggle('active', isFav);
+          favBtn.innerHTML = isFav ? '❤️' : '🤍';
+        }
+        if (cartBtn) {
+          const isCart = cartList.includes(itemId);
+          cartBtn.classList.toggle('active', isCart);
+        }
+      });
+
+      if (document.getElementById('bedsCatalogModal').style.display === 'flex') renderBedsCatalog();
+      if (document.getElementById('mattressesCatalogModal').style.display === 'flex') renderMattressesCatalog();
+    }
+
+    function updateBadges() {
+      document.getElementById('favorites-badge').innerText = favoritesList.length;
+      document.getElementById('cart-badge').innerText = cartList.length;
+    }
+
+    function openFavoritesModal() {
+      const container = document.getElementById('favorites-list');
+      if (favoritesList.length === 0) {
+        container.innerHTML = '<p style="color: #777; text-align: center; padding: 20px;">В избранном пока ничего нет.</p>';
+      } else {
+        container.innerHTML = '';
+        favoritesList.forEach(itemId => {
+          const item = getItemById(itemId);
+          if (!item) return;
+          const row = document.createElement('div');
+          row.className = 'modal-item-row';
+          row.innerHTML = `
+            <div class="modal-item-info">
+              <img src="${item.image}" class="modal-item-thumb">
+              <div>
+                <strong>${item.title}</strong>
+                <div style="color: var(--primary-color); font-weight: 700; font-size: 0.9rem; margin-top: 3px;">${formatPrice(item.price)}</div>
+              </div>
+            </div>
+            <button class="remove-item-btn" onclick="removeFromFavorites('${item.id}')">Удалить</button>
+          `;
+          container.appendChild(row);
+        });
+      }
+      document.getElementById('favoritesModal').style.display = 'flex';
+    }
+
+    function removeFromFavorites(itemId) {
+      const idx = favoritesList.indexOf(itemId);
+      if (idx > -1) favoritesList.splice(idx, 1);
+      syncAllButtons();
+      updateBadges();
+      openFavoritesModal();
+    }
+
+    function openCartModal() {
+      const container = document.getElementById('cart-list');
+      const totalBox = document.getElementById('cart-total-container');
+      const totalPriceEl = document.getElementById('cart-total-price');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      if (cartList.length === 0) {
+        container.innerHTML = '<p style="color: #777; text-align: center; padding: 20px;">Ваша корзина пуста.</p>';
+        totalBox.style.display = 'none';
+        checkoutBtn.style.display = 'none';
+      } else {
+        container.innerHTML = '';
+        let totalSum = 0;
+        cartList.forEach(itemId => {
+          const item = getItemById(itemId);
+          if (!item) return;
+          totalSum += item.price;
+          const row = document.createElement('div');
+          row.className = 'modal-item-row';
+          row.innerHTML = `
+            <div class="modal-item-info">
+              <img src="${item.image}" class="modal-item-thumb">
+              <div>
+                <strong>${item.title}</strong>
+                <div style="color: var(--primary-color); font-weight: 700; font-size: 0.9rem; margin-top: 3px;">${formatPrice(item.price)}</div>
+              </div>
+            </div>
+            <button class="remove-item-btn" onclick="removeFromCart('${item.id}')">Удалить</button>
+          `;
+          container.appendChild(row);
+        });
+        totalPriceEl.innerText = formatPrice(totalSum);
+        totalBox.style.display = 'flex';
+        checkoutBtn.style.display = 'block';
+      }
+      document.getElementById('cartModal').style.display = 'flex';
+    }
+
+    function removeFromCart(itemId) {
+      const idx = cartList.indexOf(itemId);
+      if (idx > -1) cartList.splice(idx, 1);
+      syncAllButtons();
+      updateBadges();
+      openCartModal();
+    }
+
+    function checkoutOrder() {
+      const totalText = document.getElementById('cart-total-price').innerText;
+      closeModal('cartModal');
+      showInfo('Заказ оформлен!', `Спасибо за выбор InterЛюкс! Сумма вашего заказа: ${totalText}. Наш менеджер свяжется с вами в ближайшее время.`);
+      cartList = [];
+      syncAllButtons();
+      updateBadges();
+    }
+
+    function toggleAiChat() {
+      const win = document.getElementById('aiChatWindow');
+      win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function buildSvgBlueprint(type, widthCm, heightCm, material) {
+      const sections = Math.max(2, Math.min(5, Math.round(widthCm / 70)));
+      let innerDraw = '';
+
+      if (type === 'wardrobe') {
+        const secW = 140 / sections;
+        for (let i = 0; i < sections; i++) {
+          const x = 45 + i * secW;
+          innerDraw += `<rect x="${x}" y="35" width="${secW}" height="110" fill="none" stroke="#66d9ef" stroke-width="1.5"/>`;
+          innerDraw += `<line x1="${x + secW / 2}" y1="75" x2="${x + secW / 2}" y2="105" stroke="#a6e22e" stroke-width="2"/>`;
+        }
+        innerDraw += `<polygon points="45,35 70,20 210,20 185,35" fill="rgba(102,217,239,0.12)" stroke="#66d9ef" stroke-width="1.2"/>`;
+        innerDraw += `<polygon points="185,35 210,20 210,130 185,145" fill="rgba(102,217,239,0.2)" stroke="#66d9ef" stroke-width="1.2"/>`;
+      } else if (type === 'kitchen') {
+        const secW = 150 / sections;
+        for (let i = 0; i < sections; i++) {
+          const x = 40 + i * secW;
+          innerDraw += `<rect x="${x}" y="30" width="${secW}" height="38" fill="none" stroke="#66d9ef" stroke-width="1.4"/>`;
+          innerDraw += `<rect x="${x}" y="95" width="${secW}" height="50" fill="none" stroke="#66d9ef" stroke-width="1.4"/>`;
+        }
+        innerDraw += `<polygon points="36,95 56,82 206,82 190,95" fill="rgba(166,226,46,0.25)" stroke="#a6e22e" stroke-width="1.5"/>`;
+        innerDraw += `<polygon points="190,30 206,20 206,58 190,68" fill="rgba(102,217,239,0.18)" stroke="#66d9ef" stroke-width="1.2"/>`;
+        innerDraw += `<polygon points="190,95 206,82 206,132 190,145" fill="rgba(102,217,239,0.18)" stroke="#66d9ef" stroke-width="1.2"/>`;
+      } else if (type === 'tvzone') {
+        innerDraw += `<rect x="45" y="35" width="140" height="75" fill="rgba(102,217,239,0.08)" stroke="#66d9ef" stroke-width="1.2" stroke-dasharray="3,2"/>`;
+        innerDraw += `<rect x="75" y="48" width="80" height="45" fill="#0f1722" stroke="#a6e22e" stroke-width="1.5"/>`;
+        innerDraw += `<rect x="40" y="118" width="150" height="24" fill="none" stroke="#66d9ef" stroke-width="1.5"/>`;
+        innerDraw += `<polygon points="40,118 58,108 208,108 190,118" fill="rgba(102,217,239,0.2)" stroke="#66d9ef" stroke-width="1.2"/>`;
+        innerDraw += `<polygon points="190,118 208,108 208,132 190,142" fill="rgba(102,217,239,0.25)" stroke="#66d9ef" stroke-width="1.2"/>`;
+      } else {
+        innerDraw += `<polygon points="50,45 75,30 75,90 50,105" fill="rgba(102,217,239,0.2)" stroke="#66d9ef" stroke-width="1.5"/>`;
+        innerDraw += `<polygon points="50,105 75,90 195,110 170,130" fill="rgba(166,226,46,0.2)" stroke="#a6e22e" stroke-width="1.5"/>`;
+        innerDraw += `<polygon points="50,105 170,130 170,145 50,120" fill="none" stroke="#66d9ef" stroke-width="1.5"/>`;
+        innerDraw += `<polygon points="170,130 195,110 195,125 170,145" fill="rgba(102,217,239,0.2)" stroke="#66d9ef" stroke-width="1.5"/>`;
+      }
+
+      return `
+        <svg viewBox="0 0 250 175" width="100%" height="165">
+          <defs>
+            <pattern id="bpGrid" width="15" height="15" patternUnits="userSpaceOnUse">
+              <path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.8"/>
+            </pattern>
+          </defs>
+          <rect width="250" height="175" fill="url(#bpGrid)" />
+          ${innerDraw}
+          <line x1="40" y1="158" x2="190" y2="158" stroke="#f39c12" stroke-width="1.2"/>
+          <text x="115" y="170" fill="#f39c12" font-size="10" font-family="monospace" text-anchor="middle">Ширина: ${widthCm} см</text>
+          <line x1="22" y1="30" x2="22" y2="145" stroke="#f39c12" stroke-width="1.2"/>
+          <text x="14" y="90" fill="#f39c12" font-size="10" font-family="monospace" transform="rotate(-90 14,90)" text-anchor="middle">H: ${heightCm} см</text>
+          <text x="242" y="14" fill="#8fa8c2" font-size="8" font-family="monospace" text-anchor="end">3D-CAD SCHEMA</text>
+        </svg>
+      `;
+    }
+
+    function generateAiBlueprint() {
+      const typeSelect = document.getElementById('aiFurnitureType');
+      const matSelect = document.getElementById('aiMaterialType');
+      const widthCm = parseInt(document.getElementById('aiWidthInput').value, 10) || 200;
+      const heightCm = parseInt(document.getElementById('aiHeightInput').value, 10) || 210;
+
+      const typeVal = typeSelect.value;
+      const typeLabel = typeSelect.options[typeSelect.selectedIndex].text;
+      const matLabel = matSelect.value;
+      const matMult = parseFloat(matSelect.options[matSelect.selectedIndex].getAttribute('data-mult')) || 1;
+
+      let baseRate = 300000;
+      if (typeVal === 'kitchen') baseRate = 340000;
+      else if (typeVal === 'wardrobe') baseRate = 300000;
+      else if (typeVal === 'tvzone') baseRate = 310000;
+      else if (typeVal === 'bed') baseRate = 95000;
+
+      const sizeFactor = Math.max(0.85, (widthCm / 200) * (heightCm / 210));
+      const estimatedPrice = Math.round((baseRate * sizeFactor * matMult) / 1000) * 1000;
+
+      const messagesBox = document.getElementById('aiChatMessages');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'ai-msg user';
+      userBubble.innerText = `${typeLabel}, ${widthCm}×${heightCm} см, материал: ${matLabel}`;
+      messagesBox.appendChild(userBubble);
+
+      const aiItemId = 'ai-' + customAiProjects.length;
+      const svgMarkup = buildSvgBlueprint(typeVal, widthCm, heightCm, matLabel);
+      const svgDataUrl = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgMarkup);
+
+      customAiProjects.push({
+        id: aiItemId,
+        title: `${typeLabel} (${widthCm}×${heightCm} см)`,
+        price: estimatedPrice,
+        desc: `Индивидуальный 3D-макет. Материал: ${matLabel}`,
+        image: svgDataUrl
+      });
+
+      const botBubble = document.createElement('div');
+      botBubble.className = 'ai-msg bot';
+      botBubble.innerHTML = `
+        <div>Готов примерный <strong>3D-чертёж</strong> (${typeLabel}):</div>
+        <div class="blueprint-box">${svgMarkup}</div>
+        <div style="margin-top: 8px; font-size: 0.82rem; color: #555;">
+          • Материал: <strong>${matLabel}</strong><br>
+          • Габариты: <strong>${widthCm} × ${heightCm} см</strong><br>
+          • Расчётная цена: <strong style="color: var(--primary-color); font-size: 1rem;">${formatPrice(estimatedPrice)}</strong>
+        </div>
+        <button class="ai-generate-btn" style="width: 100%; margin-top: 8px; padding: 7px;" onclick="addAiProjectToCart('${aiItemId}')">
+          🛒 Добавить этот макет в корзину
+        </button>
+      `;
+      messagesBox.appendChild(botBubble);
+      messagesBox.scrollTop = messagesBox.scrollHeight;
+    }
+
+    function addAiProjectToCart(aiItemId) {
+      if (!cartList.includes(aiItemId)) {
+        cartList.push(aiItemId);
+        updateBadges();
+      }
+      openCartModal();
+    }
+
+    function openPromoModal(index) {
+      currentPromoIndex = index;
+      updatePromoLightboxContent();
+      document.getElementById('promoLightbox').style.display = 'flex';
+    }
+
+    function closePromoLightbox(event) {
+      if (event.target.id === 'promoLightbox') closePromoLightboxDirect();
+    }
+
+    function closePromoLightboxDirect() {
+      document.getElementById('promoLightbox').style.display = 'none';
+    }
+
+    function changePromoSlide(direction) {
+      currentPromoIndex += direction;
+      if (currentPromoIndex < 0) currentPromoIndex = promoBanners.length - 1;
+      else if (currentPromoIndex >= promoBanners.length) currentPromoIndex = 0;
+      updatePromoLightboxContent();
+    }
+
+    function updatePromoLightboxContent() {
+      const banner = promoBanners[currentPromoIndex];
+      document.getElementById('promoLightbox-img').src = banner.src;
+      document.getElementById('promoLightbox-title').innerText = banner.title;
+      document.getElementById('promoLightbox-desc').innerText = banner.desc;
+    }
+
+    function showInfo(title, text) {
+      document.getElementById('infoTitle').innerText = title;
+      document.getElementById('infoText').innerText = text;
+      document.getElementById('infoModal').style.display = 'flex';
+    }
+
+    function openOrderStatusModal() {
+      document.getElementById('orderStatusModal').style.display = 'flex';
+    }
+
+    function openAddReviewModal() {
+      document.getElementById('reviewModal').style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    function closeModalOutside(event, modalId) {
+      if (event.target.id === modalId) closeModal(modalId);
+    }
+
+    function checkOrderStatus() {
+      const inputVal = document.getElementById('orderInput').value.trim();
+      if (!inputVal) { alert('Пожалуйста, введите номер заказа.'); return; }
+      closeModal('orderStatusModal');
+      showInfo('Статус заказа #' + inputVal, 'Ваш заказ находится в производстве. Ожидаемая готовность — в течение 7 рабочих дней.');
+    }
+
+    function submitReview() {
+      const author = document.getElementById('reviewAuthor').value.trim();
+      const text = document.getElementById('reviewText').value.trim();
+      if (!author || !text) { alert('Пожалуйста, заполните все поля отзыва.'); return; }
+      const reviewsGrid = document.querySelector('.reviews-grid');
+      const newCard = document.createElement('div');
+      newCard.className = 'review-card';
+      newCard.innerHTML = `<div class="review-author">${author}</div><div class="review-stars">★★★★★</div><p class="review-text">${text}</p>`;
+      reviewsGrid.prepend(newCard);
+      document.getElementById('reviewAuthor').value = '';
+      document.getElementById('reviewText').value = '';
+      closeModal('reviewModal');
+      showInfo('Спасибо за отзыв!', 'Ваш отзыв успешно опубликован на сайте.');
+    }
+
+    function openFullImage(src, caption) {
+      showInfo(caption, 'Нажмите на изображение для подробного ознакомления с брендбуком компании.');
+    }
+  </script>
+</body>
+</html>
